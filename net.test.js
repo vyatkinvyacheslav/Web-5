@@ -14,19 +14,15 @@ page.close();
 
 describe("qamid.tmweb.ru tests", () => {
   beforeEach(async () => {
-    page = await browser.newPage();
     await page.goto("https://qamid.tmweb.ru");
   });
 
   test("Mikki for saturday", async () => {
     const title = await page.title();
-    await clickElement(page, "Сб");
-    const title2 = await page.title();
+    await clickElement(page, "a:nth-child(5) > span.page-nav__day-week");
     await clickElement(page, "198");
-    const title3 = await page.title();
     await clickElement(page, "buying-scheme__chair buying-scheme__chair_standart");
     await clickElement(page, "Забронировать");
-    const title4 = await page.title();
     await clickElement(page, "onclick");
     const actual = await getText(page, "h2");
     expect(actual).toContain("Электронный билет");
