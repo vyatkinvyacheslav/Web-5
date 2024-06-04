@@ -17,46 +17,36 @@ describe("qamid.tmweb.ru tests", () => {
     await page.goto("https://qamid.tmweb.ru");
   });
 
-  test("Mikki for saturday", async () => {
+  test("Let's see Mikki tomorrow", async () => {
     const title = await page.title();
-    await clickElement(page, "a:nth-child(5) > span.page-nav__day-week");
-    await clickElement(page, "198");
-    await clickElement(page, "buying-scheme__chair buying-scheme__chair_standart");
-    await clickElement(page, "Забронировать");
-    await clickElement(page, "onclick");
+    await clickElement(page, "a:nth-child(2) > span.page-nav__day-week");
+    await clickElement(page, "[data-seance-id='198']");
+    await clickElement(page, ".buying-scheme__chair_standart");
+    await clickElement(page, ".acceptin-button");
+    await clickElement(page, ".acceptin-button");
     const actual = await getText(page, "h2");
     expect(actual).toContain("Электронный билет");
    });
 
+   test("Let's see Stalker in 3 day", async () => {
+    const title = await page.title();
+    await clickElement(page, "a:nth-child(4) > span.page-nav__day-week");
+    await clickElement(page, "[data-seance-id='217']");
+    await clickElement(page, ".buying-scheme__chair_standart");
+    await clickElement(page, ".acceptin-button");
+    await clickElement(page, ".acceptin-button");
+    const actual = await getText(page, "h2");
+    expect(actual).toContain("Электронный билет");
+   });
+
+   test("Let's see Zootopia today at 00:00(sad path)", async () => {
+    const title = await page.title();
+    await clickElement(page, "a:nth-child(1) > span.page-nav__day-week");
+    await clickElement(page, "[data-seance-id='188']");
+    await clickElement(page, ".buying-scheme__chair_standart");
+    await clickElement(page, ".acceptin-button");
+    await clickElement(page, ".acceptin-button");
+    const actual = await getText(page, "h2");
+    expect(actual).toContain("Электронный билет");
+   });
 });
-
-
-  //   const pageList = await browser.newPage();
-  //   await pageList.goto("https://netology.ru/navigation");
-  //   await pageList.waitForSelector("h1");
-  // });
-
-//   test("The first link text 'Медиа Нетологии'", async () => {
-//     const actual = await getText(page, "header a + a");
-//     expect(actual).toContain("Медиа Нетологии");
-//   });
-
-//   test("The first link leads on 'Медиа' page", async () => {
-//     await clickElement(page, "header a + a");
-//     const actual = await getText(page, ".logo__media");
-//     await expect(actual).toContain("Медиа");
-//   });
-// });
-
-// test("Should look for a course", async () => {
-//   await page.goto("https://netology.ru/navigation");
-//   await putText(page, "input", "тестировщик");
-//   const actual = await page.$eval("a[data-name]", (link) => link.textContent);
-//   const expected = "Тестировщик ПО";
-//   expect(actual).toContain(expected);
-// });
-
-// test("Should show warning if login is not email", async () => {
-//   await page.goto("https://netology.ru/?modal=sign_in");
-//   await putText(page, 'input[type="email"]', generateName(5));
-//});
