@@ -39,14 +39,14 @@ describe("qamid.tmweb.ru tests", () => {
     expect(actual).toContain("Электронный билет");
    });
 
-   test("Let's see Zootopia today at 00:00(sad path)", async () => {
+   test("Let's see Mikki tomorrow but there are no places(sad path)", async () => {
     const title = await page.title();
-    await clickElement(page, "a:nth-child(1) > span.page-nav__day-week");
-    await clickElement(page, "[data-seance-id='188']");
-    await clickElement(page, ".buying-scheme__chair_standart");
-    await clickElement(page, ".acceptin-button");
+    await clickElement(page, "a:nth-child(2) > span.page-nav__day-week");
+    await clickElement(page, "[data-seance-id='198']");
+    await clickElement(page, ".buying-scheme__chair_disabled");
     await clickElement(page, ".acceptin-button");
     const actual = await getText(page, "h2");
-    expect(actual).toContain("Электронный билет");
+    expect(actual).toContain("Микки маус");
    });
-});
+
+  });
